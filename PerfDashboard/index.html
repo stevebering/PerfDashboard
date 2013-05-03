@@ -507,7 +507,7 @@
 
 
 
-                            <div class="infobox infobox-orange2">
+                            <div id="infobox-schedulingerrors" class="infobox infobox-orange2">
                                 <div class="infobox-chart">
                                     <span class="sparkline" data-values="196,128,202,177,154,94,100,170,224">
                                         <canvas style="display: inline-block; width: 44px; height: 27px; vertical-align: top;" width="44" height="27"></canvas>
@@ -1408,7 +1408,8 @@
     <!-- ace scripts -->
     <script src="assets/js/ace-elements.min.js"></script>
     <script src="assets/js/ace.min.js"></script>
-
+    <script src="assets/js/app/app.js"></script>
+    <script src="assets/js/app/index.js"></script>
 
     <!-- inline scripts related to this page -->
 
@@ -1450,20 +1451,15 @@
                 $(this).sparkline('html', { tagValuesAttribute: 'data-values', type: 'bar', barColor: barColor, chartRangeMin: $(this).data('min') || 0 });
             });
 
-
-
-
-
             var data = [
-              { label: "social networks", data: 38.7, color: "#68BC31" },
-              { label: "search engines", data: 24.5, color: "#2091CF" },
-              { label: "ad campaings", data: 8.2, color: "#AF4E96" },
-              { label: "direct traffic", data: 18.6, color: "#DA5430" },
-              { label: "other", data: 10, color: "#FEE074" }
+                { label: "social networks", data: 38.7, color: "#68BC31" },
+                { label: "search engines", data: 24.5, color: "#2091CF" },
+                { label: "ad campaigns", data: 8.2, color: "#AF4E96" },
+                { label: "direct traffic", data: 18.6, color: "#DA5430" },
+                { label: "other", data: 10, color: "#FEE074" }
             ];
             var placeholder = $('#piechart-placeholder').css({ 'width': '90%', 'min-height': '150px' });
             $.plot(placeholder, data, {
-
                 series: {
                     pie: {
                         show: true,
@@ -1476,7 +1472,6 @@
                             width: 2
                         },
                         startAngle: 2
-
                     }
                 },
                 legend: {
@@ -1484,8 +1479,7 @@
                     position: "ne",
                     labelBoxBorderColor: null,
                     margin: [-30, 15]
-                }
-               ,
+                },
                 grid: {
                     hoverable: true,
                     clickable: true
@@ -1498,10 +1492,8 @@
                         y: -50
                     }
                 }
-
             });
-
-
+            
             var $tooltip = $("<div class='tooltip top in' style='display:none;'><div class='tooltip-inner'></div></div>").appendTo('body');
             placeholder.data('tooltip', $tooltip);
             var previousPoint = null;
@@ -1520,12 +1512,7 @@
                 }
 
             });
-
-
-
-
-
-
+            
             var d1 = [];
             for (var domainsIndex = 0; domainsIndex < Math.PI * 2; domainsIndex += 0.5) {
                 d1.push([domainsIndex, Math.sin(domainsIndex)]);
@@ -1543,9 +1530,9 @@
 
             $('#sales-charts').css({ 'width': '100%', 'height': '220px' });
             $.plot("#sales-charts", [
-                { label: "Domains", data: d1 },
-                { label: "Hosting", data: d2 },
-                { label: "Services", data: d3 }
+                    { label: "Domains", data: d1 },
+                    { label: "Hosting", data: d2 },
+                    { label: "Services", data: d3 }
             ], {
                 hoverable: true,
                 shadowSize: 0,
@@ -1568,13 +1555,11 @@
                     borderColor: '#555'
                 }
             });
-
-
+            
             $('[data-rel="tooltip"]').tooltip();
-        })
 
-
-
+            Meracord.Dashboard.Index.init();
+        });
 
     </script>
 
